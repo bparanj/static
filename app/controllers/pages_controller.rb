@@ -8,7 +8,7 @@ class PagesController < ApplicationController
   # GET /pages/1
   # GET /pages/1.json
   def show
-    @page = Page.find_by_permalink!(params[:id])
+    @page = Page.find_by!(permalink: params[:id])
   end
 
   # GET /pages/new
@@ -19,7 +19,7 @@ class PagesController < ApplicationController
 
   # GET /pages/1/edit
   def edit
-    @page = Page.find_by_permalink!(params[:id])
+    @page = Page.find_by!(permalink: params[:id])
   end
 
   # POST /pages
@@ -36,7 +36,7 @@ class PagesController < ApplicationController
   # PUT /pages/1
   # PUT /pages/1.json
   def update
-    @page = Page.find_by_permalink!(params[:id])
+    @page = Page.find_by!(permalink: params[:id])
     if @page.update_attributes(allowed_params)
       redirect_to @page, notice: 'Page was successfully updated.' 
     else
@@ -47,7 +47,7 @@ class PagesController < ApplicationController
   # DELETE /pages/1
   # DELETE /pages/1.json
   def destroy
-    @page = Page.find_by_permalink!(params[:id])
+    @page = Page.find_by!(permalink: params[:id])
     @page.destroy
 
     redirect_to pages_url
