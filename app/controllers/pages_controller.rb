@@ -9,6 +9,9 @@ class PagesController < ApplicationController
   # GET /pages/1.json
   def show
     @page = Page.find_by!(permalink: params[:id])
+  rescue
+    # This is a hack. Do not use exception handling to handle application logic. 
+    @page = Page.find(params[:id])
   end
 
   # GET /pages/new
@@ -19,7 +22,7 @@ class PagesController < ApplicationController
 
   # GET /pages/1/edit
   def edit
-    @page = Page.find_by!(permalink: params[:id])
+    @page = Page.find(params[:id])
   end
 
   # POST /pages
@@ -36,7 +39,7 @@ class PagesController < ApplicationController
   # PUT /pages/1
   # PUT /pages/1.json
   def update
-    @page = Page.find_by!(permalink: params[:id])
+    @page = Page.find(params[:id])
     if @page.update_attributes(allowed_params)
       redirect_to @page, notice: 'Page was successfully updated.' 
     else

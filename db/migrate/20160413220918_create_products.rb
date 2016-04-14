@@ -3,7 +3,7 @@ class CreateProducts < ActiveRecord::Migration[5.0]
     create_table :products do |t|
       t.string :name
       t.decimal :price
-      t.date :released_on
+      t.date :released_at
 
       t.timestamps
     end
