@@ -1,7 +1,9 @@
 class Category < ApplicationRecord
   has_many :products
   
-  liquid_methods :name
+  def to_liquid
+    CategoryLiquidDrop.new(self)
+  end
 end
 
 
